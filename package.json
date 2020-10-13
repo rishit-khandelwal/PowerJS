@@ -1,0 +1,12 @@
+{
+  "name": "powerjs",
+  "version": "1.0.0",
+  "description": "An super minimal js framework",
+  "main": "power.js",
+  "scripts": {
+    "test": "tsc power.ts",
+    "build": "tsc power.ts"
+  },
+  "author": "Rishit Khandelwal",
+  "license": "MIT"
+}
