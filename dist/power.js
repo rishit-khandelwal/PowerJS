@@ -1,6 +1,3 @@
-"use strict";
-exports.__esModule = true;
-exports.PowerComponentClose = exports.TextNode = exports.Conditional = exports.PowerComponentSingle = void 0;
 var PowerComponentSingle = /** @class */ (function () {
     function PowerComponentSingle(tag, props) {
         this.tag = tag;
@@ -23,15 +20,19 @@ var PowerComponentSingle = /** @class */ (function () {
     };
     return PowerComponentSingle;
 }());
-exports.PowerComponentSingle = PowerComponentSingle;
-function Conditional(tag, filter) {
+export { PowerComponentSingle };
+export function Conditional(tag, filter) {
     var final = filter.text().replace("state." + tag, filter.getState(tag));
     filter.setProp('text', [
         new TextNode(final)
     ]);
     return final;
 }
-exports.Conditional = Conditional;
+export function ConditionalMap(filter) {
+    for (var tag in filter.getStates()) {
+        Conditional(tag, filter);
+    }
+}
 var TextNode = /** @class */ (function () {
     function TextNode(text) {
         this.text = text;
@@ -41,12 +42,12 @@ var TextNode = /** @class */ (function () {
     };
     return TextNode;
 }());
-exports.TextNode = TextNode;
+export { TextNode };
 var PowerComponentClose = /** @class */ (function () {
     function PowerComponentClose(tag, props) {
         this.tag = tag;
         this.props = props;
-        this.state = {};
+        this.state = JSON.parse("{}");
     }
     PowerComponentClose.prototype.text = function () {
         var text = "";
@@ -82,6 +83,9 @@ var PowerComponentClose = /** @class */ (function () {
     PowerComponentClose.prototype.getState = function (key) {
         return this.state[key];
     };
+    PowerComponentClose.prototype.getStates = function () {
+        return this.state;
+    };
     PowerComponentClose.prototype.setProp = function (x, val) {
         this.props[x] = val;
     };
@@ -90,4 +94,4 @@ var PowerComponentClose = /** @class */ (function () {
     };
     return PowerComponentClose;
 }());
-exports.PowerComponentClose = PowerComponentClose;
+export { PowerComponentClose };

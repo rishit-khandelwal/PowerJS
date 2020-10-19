@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <!-- <script type="text/javascript module" src="../../dist/power.js"></script> -->
+        <script type="module">
+            import * as power from "../../dist/power.js";
+            
+            class Icon extends power.PowerComponentClose
+            {
+                constructor(name)
+                {
+                    super('span',{
+                        "aria-label": name,
+                        "text": [
+                            new power.TextNode("Wow")
+                        ]
+                    })
+                }
+            }
+
+            var img = new Icon('app');
+
+            img.setState('name','Banner')
+            img.setState('num','0')
+            
+            power.ConditionalMap(
+                img
+            )
+
+            console.log(img.html())
+            document.body.innerHTML += img.html();
+        </script>
+    </head>
+    <body>
+        <span aria-setsize="10">Meow</span>
+    </body>
+</html>

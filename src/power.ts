@@ -32,6 +32,13 @@ export function Conditional(tag, filter: PowerComponentClose) // "like: state.li
     return final;
 }
 
+export function ConditionalMap(filter: PowerComponentClose)
+{
+    for (var tag in filter.getStates())
+    {
+        Conditional(tag,filter);
+    }
+}
 export class TextNode {
     constructor(private text: string) {}
     html()
@@ -41,10 +48,10 @@ export class TextNode {
 }
 
 export class PowerComponentClose {
-    private state;
+    private state: JSON;
     constructor(private tag: string,private props: JSON) 
     {
-        this.state = {};
+        this.state = JSON.parse("{}");
     }
 
     text(): string
@@ -89,6 +96,11 @@ export class PowerComponentClose {
     getState(key: string)
     {
         return this.state[key];
+    }
+
+    getStates()
+    {
+        return this.state
     }
     
     setProp(x: string, val: any)

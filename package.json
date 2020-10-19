@@ -2,7 +2,7 @@
   "name": "powerjs",
   "version": "1.0.0",
   "description": "An super minimal js framework",
-  "main": "power.js",
+  "main": "dist/power.js",
   "scripts": {
     "test": "tsc power.ts",
     "build": "tsc power.ts"
